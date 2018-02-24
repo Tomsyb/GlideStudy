@@ -7,11 +7,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView mImg;
     private Button btn;
     private String imgUrl = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3736398904,3705920538&fm=27&gp=0.jpg";
+    private String gifUrl = "http://p1.pstatp.com/large/166200019850062839d3";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +37,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void method1(){
         Glide.with(this)
-                .load(imgUrl)
-                .into(mImg);
+                .load(gifUrl)//图片加载地址
+                .asBitmap()//即使是gif地址加了这个就是只能显示静态图，即使是gif图也只能显示gif图第一帧图片对应asGif( );
+                .placeholder(R.mipmap.ic_launcher)//占位图
+                .error(R.mipmap.ic_launcher)//异常占位图
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//禁用缓存
+                .into(mImg);//view
     }
+
 }
 
 

@@ -17,7 +17,7 @@ AndroidManifest.xml加
 ```
 <uses-permission android:name="android.permission.INTERNET" />
 ```
- ## 普通加载
+ ## 加载核心代码
 
 ```
 Glide.with(this)
@@ -27,11 +27,39 @@ Glide.with(this)
 
 解析上面加载
 
-- ** with **:  创建加载图片的实例可接Activity，Fragment，Context，前两种可直接传this,
+- **with**:  创建加载图片的实例可接Activity，Fragment，Context，前两种可直接传this,
 但是如果没在Activity或Fragment中，我们可以传ApplicationContext，传入的决定图片加载的生命周期
 前两个是和Activity和Fragment被销毁图片加载停止，ApplicationContext应用程序被杀掉的时候图片加载才停止
 
-- ** load() **:
-图片资源（网络图片，本地图片，应用资源,二进制流,Uri对象等）
+- **load()**:
+图片资源（网络图片，本地图片，应用资源,二进制流,Uri对象等），除了刚刚的加载网址外还有很多
+
+```
+// 加载本地图片
+File file = new File(getExternalCacheDir() + "/image.jpg");
+Glide.with(this).load(file).into(imageView);
+
+// 加载应用资源
+int resource = R.drawable.image;
+Glide.with(this).load(resource).into(imageView);
+
+// 加载二进制流
+byte[] image = getImageBytes();
+Glide.with(this).load(image).into(imageView);
+
+// 加载Uri对象
+Uri imageUri = getImageUri();
+Glide.with(this).load(imageUri).into(imageView);
+```
+
+- **into()** 加载到哪个imgview上
+
+## 可加载GIF图片地址，自动判断，load（GIF地址）即可加载
+
+
+
+## 学习地址
+
+[郭林glide讲解](http://blog.csdn.net/guolin_blog/article/details/53759439)
 
 
