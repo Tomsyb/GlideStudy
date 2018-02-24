@@ -38,10 +38,11 @@ public class MainActivity extends AppCompatActivity {
     public void method1(){
         Glide.with(this)
                 .load(gifUrl)//图片加载地址
-                .asBitmap()//即使是gif地址加了这个就是只能显示静态图，即使是gif图也只能显示gif图第一帧图片对应asGif( );
+                .asBitmap()//格式限制（只能显示静态图）即使是gif地址加了这个就是只能显示其第一帧静态图，对应asGif( );
                 .placeholder(R.mipmap.ic_launcher)//占位图
                 .error(R.mipmap.ic_launcher)//异常占位图
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//禁用缓存
+                .override(100, 100)//指定图片大小
                 .into(mImg);//view
     }
 

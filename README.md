@@ -17,7 +17,21 @@ AndroidManifest.xml加
 ```
 <uses-permission android:name="android.permission.INTERNET" />
 ```
- ## **一句代码**
+
+## **全面使用**
+
+```
+Glide.with(this)
+                .load(gifUrl)//图片加载地址
+                .asBitmap()//格式限制（只能显示静态图）即使是gif地址加了这个就是只能显示其第一帧静态图，对应asGif( );
+                .placeholder(R.mipmap.ic_launcher)//占位图
+                .error(R.mipmap.ic_launcher)//异常占位图
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//禁用缓存
+                .override(100, 100)//指定图片大小
+                .into(mImg);//view
+```
+
+## **核心使用**
 
 ```
 Glide.with(this)
@@ -33,6 +47,7 @@ Glide.with(this)
 
 - **load()**:
 图片资源（网络图片图片地址，本地图片，应用资源,二进制流,Uri对象等）
+
 1.加载本地图片
 
 ```
@@ -63,14 +78,19 @@ Glide.with(this).load(imageUri).into(imageView);
 
 - **into()** 加载到哪个imgview上
 
-## 可加载GIF图片地址
+## 其他复杂用法
 
-自动判断，load（GIF地址）即可加载
+
+
+## 可加载GIF图片
+
+根据地址自动判断是否是gif或静态图，load（GIF地址）即可加载（不限制格式的情况）
 
 
 
 ## 学习地址
 
 [郭林glide讲解](http://blog.csdn.net/guolin_blog/article/details/53759439)
+
 
 
